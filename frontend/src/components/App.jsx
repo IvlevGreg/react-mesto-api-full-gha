@@ -15,6 +15,7 @@ import {Login} from './Login'
 import {Register} from './Register'
 import {InfoTooltip} from './InfoTooltip'
 import {authApi} from '../utils/AuthApi'
+import {deleteCookie} from "../utils/deleteCookie";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(null)
@@ -35,15 +36,12 @@ function App() {
     const navigate = useNavigate()
 
     const handleUserCheck = useCallback(() => {
-        const user = JSON.parse(localStorage.getItem('user'))
-
-        if (!user) return
 
         authApi
-            .getUsersMe(user.token)
+            .getUsersMe()
             .then((res) => {
                 setIsLoggedIn(true)
-                setUserEmail(res.data.email)
+                setUserEmail(res.email)
                 navigate('/')
             })
             .catch((error) => {
@@ -69,7 +67,7 @@ function App() {
                 api
                     .getInitialCards()
                     .then((data) => {
-                        setCards(data)
+                        setCards(data.data)
                         setCardsStatus('success')
                     })
                     .catch(() => setCardsStatus('error'))
@@ -80,7 +78,7 @@ function App() {
 
     const handleLogOut = useCallback(
         () => {
-            localStorage.removeItem('user')
+            deleteCookie('jwt')
             setIsLoggedIn(null)
         },
         []
@@ -116,7 +114,7 @@ function App() {
     const handleCardLike = useCallback((currentCard, isLiked) => {
         api
             .changeLikeCardStatus(currentCard._id, isLiked)
-            .then((newCard) => {
+            .then(({data:newCard}) => {
                 setCards((state) =>
                     state.map((card) => (card._id === currentCard._id ? newCard : card))
                 )
@@ -156,7 +154,7 @@ function App() {
         (card) => {
             api
                 .postNewCard(card)
-                .then((newCard) => {
+                .then(({data:newCard}) => {
                     setCards([newCard, ...cards])
                     closeAllPopups()
                 })
@@ -198,12 +196,6 @@ function App() {
             .postSignIn(user)
             .then((res) => {
                 setIsLoggedIn(true)
-                localStorage.setItem(
-                    'user',
-                    JSON.stringify({
-                        ...res,
-                    })
-                )
                 navigate('/')
             })
             .catch((error) => {
