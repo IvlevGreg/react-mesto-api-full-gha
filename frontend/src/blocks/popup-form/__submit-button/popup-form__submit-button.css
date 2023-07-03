@@ -1,0 +1,46 @@
+.popup-form__submit-button {
+  padding: 14px;
+  width: 100%;
+
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--text-color-main);
+
+  border: none;
+  background-color: var(--bac-main-color);
+  border-radius: 2px;
+
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.popup-form__submit-button:hover {
+  opacity: 0.8;
+}
+
+.popup-form__submit-button:active {
+  opacity: 0.6;
+}
+
+/* .popup-form__submit-button:disabled {
+  opacity: 0.2;
+} */
+
+@media screen and (min-width: 700px) {
+  .popup-form__submit-button {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.popup-form__submit-button:disabled {
+  opacity: 0.2;
+
+  cursor: initial;
+}
+
+.popup-form__submit-button:disabled:hover,
+.popup-form__submit-button:disabled:active {
+  opacity: 0.2;
+}
+

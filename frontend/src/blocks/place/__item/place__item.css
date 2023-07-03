@@ -1,0 +1,25 @@
+.place__item {
+  position: relative;
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  color: var(--text-color-secondary);
+
+  background: var(--bac-card-img);
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 520px) {
+  .place__item {
+    width: calc(50% - 8.5px);
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .place__item {
+    width: calc(33.33% - 11.33px);
+  }
+}

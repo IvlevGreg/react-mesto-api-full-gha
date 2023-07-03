@@ -1,0 +1,247 @@
+/* vendors */
+@import url("./vendor/normalize.css");
+
+/* variables */
+
+@import url("./variables/color-background.css");
+@import url("./variables/color-text.css");
+@import url("./variables/color-border.css");
+
+/* fonts */
+@import url("vendor/fonts/fonts.css");
+
+/* blocks */
+
+@import url("./blocks/add-button/add-button.css");
+
+@import url("./blocks/like-button/like-button.css");
+@import url("./blocks/like-button/_active/like-button_active.css");
+
+@import url("./blocks/close-button/close-button.css");
+
+@import url("./blocks/remove-button/remove-button.css");
+@import url("./blocks/remove-button/__img/remove-button__img.css");
+
+@import url("./blocks/edit-button/edit-button.css");
+
+@import url("./blocks/popup-form/popup-form.css");
+@import url("./blocks/popup-form/__fieldset/popup-form__fieldset.css");
+@import url("./blocks/popup-form/__input/popup-form__input.css");
+@import url("./blocks/popup-form/__input-error/popup-form__input-error.css");
+@import url("./blocks/popup-form/__input_error/_active/popup-form__input_error_active.css");
+@import url("./blocks/popup-form/__label/popup-form__label.css");
+@import url("./blocks/popup-form/__submit-button/popup-form__submit-button.css");
+@import url("./blocks/popup-form/__submit-button/_disabled/popup-form__submit-button_disabled.css");
+
+@import url("./blocks/footer/footer.css");
+@import url("./blocks/footer/__ps/footer__ps.css");
+
+@import url("./blocks/header/header.css");
+
+@import url("./blocks/logo/logo.css");
+@import url("./blocks/logo/__img/logo__img.css");
+
+@import url("./blocks/main-title/main-title.css");
+
+@import url("./blocks/main/main.css");
+
+@import url("./blocks/pages/pages.css");
+@import url("./blocks/pages/_popup-opened/pages_popup-opened.css");
+
+@import url("./blocks/place/place.css");
+@import url("./blocks/place/__open-popup-button/place__open-popup-button.css");
+@import url("./blocks/place/__like-button/place__like-button.css");
+@import url("./blocks/place/__remove-button/place__remove-button.css");
+@import url("./blocks/place/__content/place__content.css");
+@import url("./blocks/place/__img/place__img.css");
+@import url("./blocks/place/__item/place__item.css");
+@import url("./blocks/place/__list/place__list.css");
+@import url("./blocks/place/__name/place__name.css");
+@import url("./blocks/place/__like-amount/place__like-amount.css");
+
+@import url("./blocks/popup/popup.css");
+@import url("./blocks/popup/__close-button/popup__close-button.css");
+@import url("./blocks/popup/__container/popup__container.css");
+@import url("./blocks/popup/__container/_card/popup__container_card.css");
+@import url("./blocks/popup/__popup-form/popup__popup-form.css");
+@import url("./blocks/popup/__scroll/popup__scroll.css");
+@import url("./blocks/popup/__title/popup__title.css");
+@import url("./blocks/popup/__name/popup__name.css");
+@import url("./blocks/popup/__img/popup__img.css");
+@import url("./blocks/popup/_card/popup_card.css");
+@import url("./blocks/popup/_opened/popup_opened.css");
+@import url("./blocks/popup/_closing/popup_closing.css");
+
+@import url("./blocks/profile/profile.css");
+@import url("./blocks/profile/__add-button/profile__add-button.css");
+@import url("./blocks/profile/__img-btn/profile__img-btn.css");
+@import url("./blocks/profile/__descr/profile__descr.css");
+@import url("./blocks/profile/__edit-button/profile__edit-button.css");
+@import url("./blocks/profile/__img/profile__img.css");
+@import url("./blocks/profile/__text-container/profile__text-container.css");
+@import url("./blocks/profile/__title/profile__title.css");
+
+
+.h-w-100 {
+    width: 100%;
+}
+
+body {
+    color: var(--text-color-main);
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    background-color: var(--bac-main-color);
+}
+
+.popup-form__input_dark {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #CCCCCC;
+    color: #FFFFFF;
+}
+
+.popup-form__input_dark::placeholder {
+    font-size: 14px;
+    line-height: 17px;
+    color: #CCCCCC;
+}
+
+.popup-form__input_dark:focus {
+    outline: none;
+    border-bottom: 2px solid #fff;
+}
+
+.popup-form_dark {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: 25px;
+}
+
+.popup-form__input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 25px;
+    width: 100%;
+}
+
+.page {
+    min-height: calc(100vh - 300px);
+    margin: 0 auto;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 358px;
+}
+
+.page__title {
+    margin-bottom: 50px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.popup-form__submit-button_dark {
+    color: var(--text-color-secondary);
+    background: #FFFFFF;
+}
+
+.popup__result-img {
+    margin: 0 auto 32px;
+    width: 120px;
+    height: 120px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.popup__subtitle {
+    margin: 0;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #000000;
+}
+
+.popup__container_status {
+    padding: 18px 50px;
+}
+
+@media screen and (min-width: 700px) {
+    .popup__container_status {
+        padding: 36px 50px;
+    }
+}
+
+.popup__result-img_success {
+    background-image: url("images/icons/icon-status-success.svg");
+}
+
+.popup__result-img_error {
+    background-image: url("images/icons/icon-status-error.svg");
+}
+
+.link {
+    padding: 14px;
+    display: block;
+
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--text-color-main);
+    text-decoration: none;
+    text-align: center;
+
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.link:hover {
+    opacity: 0.8;
+}
+
+.link:active {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 520px) {
+    .header__email {
+        display: none;
+    }
+}
+
+.header__user {
+    display: flex;
+    gap: 24px;
+}
+
+.header__text {
+    font-size: 14px;
+    line-height: 17px;
+}
+
+@media screen and (min-width: 520px) {
+    .header__text {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+
+.header__link {
+    text-decoration: none;
+    color: var(--text-color-main);
+}
+
+.header__link:hover {
+    opacity: .8;
+}
+
+.header__link:focus {
+    opacity: .6;
+}
+
+.header__text_gray {
+    color: #A9A9A9;
+}
+

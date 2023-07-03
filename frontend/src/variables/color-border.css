@@ -1,0 +1,6 @@
+:root {
+  --bor-section-color: rgba(84, 84, 84, 0.7);
+  --bor-input-color: rgba(0, 0, 0, 0.2);
+  --bor-input-color-focus: rgba(0, 0, 0, 1);
+  --bor-input-color-error: rgba(255, 0, 0, 1);
+}

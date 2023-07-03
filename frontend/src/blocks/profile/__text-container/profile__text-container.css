@@ -1,0 +1,25 @@
+.profile__text-container {
+  position: relative;
+
+  /* display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center; */
+  max-width: 80%;
+  margin-bottom: 32px;
+}
+
+@media screen and (min-width: 520px) {
+  .profile__text-container {
+    margin-bottom: 0;
+    max-width: calc(100% - 200px);
+
+    padding-right: 18px;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .profile__text-container {
+    max-width: calc(100% - 350px);
+  }
+}

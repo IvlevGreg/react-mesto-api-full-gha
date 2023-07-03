@@ -1,0 +1,14 @@
+.footer__ps {
+  margin: 0;
+  padding: 0;
+
+  color: var(--text-color-additional);
+  font-size: 14px;
+  line-height: 17px;
+}
+@media screen and (min-width: 700px) {
+  .footer__ps {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

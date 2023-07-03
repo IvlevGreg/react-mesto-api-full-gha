@@ -1,0 +1,9 @@
+.place__list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px 17px;
+
+  list-style: none;
+}

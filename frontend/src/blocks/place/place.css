@@ -1,0 +1,9 @@
+.place {
+  padding: 18px 19px 24px;
+}
+
+@media screen and (min-width: 700px) {
+  .place {
+    padding: 31px 40px 45px;
+  }
+}

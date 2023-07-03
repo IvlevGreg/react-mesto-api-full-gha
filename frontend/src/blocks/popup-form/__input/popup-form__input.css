@@ -1,0 +1,19 @@
+.popup-form__input {
+  padding: 0;
+  padding-bottom: 7px;
+  width: 100%;
+
+  font-size: 14px;
+  line-height: 17px;
+
+  border: none;
+  border-bottom: 1px solid var(--bor-input-color);
+
+  transition: border 0.5s ease;
+}
+
+.popup-form__input:focus {
+  outline: none;
+
+  border-bottom: 1px solid var(--bor-input-color-focus);
+}

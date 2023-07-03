@@ -1,0 +1,8 @@
+.popup-form__input-error {
+  width: 100%;
+  display: inline-block;
+
+  color: var(--text-color-input-error);
+  font-size: 12px;
+  line-height: 15px;
+}

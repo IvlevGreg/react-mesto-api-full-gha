@@ -1,0 +1,10 @@
+.popup-form__submit-button_disabled {
+  opacity: 0.2;
+
+  cursor: initial;
+}
+
+.popup-form__submit-button_disabled:hover,
+.popup-form__submit-button_disabled:active {
+  opacity: 0.2;
+}

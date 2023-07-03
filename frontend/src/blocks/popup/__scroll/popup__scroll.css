@@ -1,0 +1,18 @@
+.popup__scroll {
+  padding: 40px 20px;
+  width: 88%;
+  max-width: 430px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 15px);
+}
+@media screen and (max-height: 420px) {
+  .popup__scroll {
+    padding: 0;
+  }
+}
+@media screen and (min-width: 700px) {
+  .popup__scroll {
+    padding: 40px;
+  }
+}

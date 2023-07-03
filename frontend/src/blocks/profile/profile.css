@@ -1,0 +1,24 @@
+.profile {
+  padding: 40px 19px 19px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (min-width: 520px) {
+  .profile {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    gap: 30px;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .profile {
+    padding-left: 40px;
+    padding-right: 40px;
+    flex-wrap: nowrap;
+  }
+}
