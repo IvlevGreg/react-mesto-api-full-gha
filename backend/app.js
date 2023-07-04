@@ -2,8 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
+
 const errorHandler = require('./middlewares/errorHandler');
 const createCustomErrors = require('./middlewares/createCustomErrors');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const routes = require('./routes');
 
@@ -14,6 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.use(requestLogger);
+
 app.use('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
@@ -21,6 +25,8 @@ app.use('/crash-test', () => {
 });
 
 app.use('/', routes);
+
+app.use(errorLogger)
 
 app.use(errors());
 app.use(createCustomErrors);
