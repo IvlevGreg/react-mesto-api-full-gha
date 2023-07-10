@@ -6,6 +6,7 @@ const errorHandler = require('./middlewares/errorHandler');
 const createCustomErrors = require('./middlewares/createCustomErrors');
 const cors = require('cors')
 
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const routes = require('./routes');
 
@@ -17,8 +18,19 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
+
+app.use(requestLogger);
+
+
+app.use('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use('/', routes);
 
+app.use(errorLogger)
 app.use(errors());
 app.use(createCustomErrors);
 app.use(errorHandler);
