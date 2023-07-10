@@ -33,6 +33,16 @@ const login = (req, res, next) => {
     .catch(next);
 };
 
+const logout = (req,res) => {
+  res
+    .cookie('jwt', '', {
+      maxAge: -1,
+      httpOnly: true,
+    });
+
+  res.send({ message: 'Вы успешно вышли из профиля' });
+}
+
 const createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
@@ -73,4 +83,5 @@ const createUser = (req, res, next) => {
 module.exports = {
   createUser,
   login,
+  logout,
 };

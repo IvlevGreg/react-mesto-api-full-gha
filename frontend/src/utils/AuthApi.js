@@ -1,3 +1,5 @@
+import {IS_DEVELOPMENT} from "./IS_DEVELOPMENT";
+
 export class AuthApi {
     constructor({baseUrl, headers, otherCommonProps}) {
         this._baseUrl = baseUrl
@@ -19,6 +21,15 @@ export class AuthApi {
                 password,
                 email,
             }),
+        }).then(this._parseJson)
+    }
+
+    postSignOut() {
+        return fetch(`${this._baseUrl}/sign-out`, {
+            method: 'POST',
+            headers: this._headers,
+            ...this._otherCommonProps,
+
         }).then(this._parseJson)
     }
 

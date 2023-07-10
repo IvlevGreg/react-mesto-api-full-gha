@@ -15,7 +15,6 @@ import {Login} from './Login'
 import {Register} from './Register'
 import {InfoTooltip} from './InfoTooltip'
 import {authApi} from '../utils/AuthApi'
-import {deleteCookie} from "../utils/deleteCookie";
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(null)
@@ -78,8 +77,11 @@ function App() {
 
     const handleLogOut = useCallback(
         () => {
-            deleteCookie('jwt')
-            setIsLoggedIn(null)
+            authApi.postSignOut().then(() => {
+                setIsLoggedIn(null)
+            }).catch((e) => console.error(e))
+
+
         },
         []
     )
