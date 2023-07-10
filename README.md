@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 158.160.29.154
 
-Frontend https://...
+Frontend https://blogogram.nomoreparties.sbs/
 
-Backend https://...
+Backend https://api.blogogram.nomoreparties.sbs/
