@@ -1,3 +1,5 @@
+import {IS_DEVELOPMENT} from "./IS_DEVELOPMENT";
+
 export class Api {
     constructor({baseUrl, headers, otherCommonProps}) {
         this._baseUrl = baseUrl
@@ -92,7 +94,7 @@ export class Api {
 }
 
 export const api = new Api({
-    baseUrl: 'http://localhost:4000',
+    baseUrl: IS_DEVELOPMENT ? 'http://localhost:4000' : 'https://blogogram.nomoreparties.sbs',
     headers: {
         authorization: '7a43c762-4e63-438c-856b-e056a5084ee3',
         'Content-Type': 'application/json',

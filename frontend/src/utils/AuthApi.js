@@ -45,7 +45,7 @@ export class AuthApi {
 }
 
 export const authApi = new AuthApi({
-    baseUrl: 'http://localhost:4000',
+    baseUrl: IS_DEVELOPMENT ? 'http://localhost:4000' : 'https://blogogram.nomoreparties.sbs',
     headers: {
         'Content-Type': 'application/json',
     },
