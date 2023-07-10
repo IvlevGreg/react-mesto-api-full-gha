@@ -8,6 +8,7 @@ const USER_409_ERROR_TEXT = 'Пользователь с таким email уже
 const {
   UserExist, AuthError,
 } = require('../utils/Errors');
+const {jwtToken} = require("../utils/jwtToken");
 
 const rejectPromiseWrongEmailOrPassword = () => Promise.reject(
   new AuthError('Неверное сочетание почты и пароля'),
@@ -19,7 +20,7 @@ const login = (req, res, next) => {
     .then((userData) => (userData && bcrypt.compare(password, userData.password)
       ? userData : rejectPromiseWrongEmailOrPassword()))
     .then((userData) => {
-      const token = jwt.sign({ _id: userData._id }, 'super-strong-secret', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: userData._id }, jwtToken, { expiresIn: '7d' });
 
       res
         .cookie('jwt', token, {
