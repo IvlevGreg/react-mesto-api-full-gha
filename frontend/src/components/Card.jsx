@@ -9,7 +9,7 @@ export function Card({ card, onCardClick, onCardLike, onCardDelete }) {
 
   const isOwn = card.owner === currentUser._id
   const isLiked = card.likes?.some((like) => like === currentUser._id)
-    console.log(likes);
+
     const handleCardClick = () => onCardClick(card)
   const handleLikeClick = () => onCardLike(card, isLiked)
   const handleDeleteClick = () => onCardDelete(_id)
