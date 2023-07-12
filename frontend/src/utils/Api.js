@@ -62,13 +62,6 @@ export class Api {
         return isLiked ? this._deleteLike(id) : this._putLike(id)
     }
 
-    getUserdata() {
-        return fetch(`${this._baseUrl}/users/me`, {
-            headers: this._headers,
-            ...this._otherCommonProps,
-        }).then(this._parseJson)
-    }
-
     updateUserData({name, about}) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',

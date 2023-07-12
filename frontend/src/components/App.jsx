@@ -57,8 +57,8 @@ function App() {
         if (!isLoggedIn) return
         setUserStatus('loading')
         setCardsStatus('loading')
-        api
-            .getUserdata()
+        authApi
+            .getUsersMe()
             .then((data) => {
                 setUserStatus('success')
                 setCurrentUser(data)
