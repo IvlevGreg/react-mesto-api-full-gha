@@ -18,7 +18,6 @@ import {authApi} from '../utils/AuthApi'
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(null)
-    const [userEmail, setUserEmail] = useState(null)
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
@@ -35,19 +34,20 @@ function App() {
     const navigate = useNavigate()
 
     const handleUserCheck = useCallback(() => {
+        if (currentUser) return
 
         authApi
             .getUsersMe()
             .then((res) => {
                 setIsLoggedIn(true)
-                setUserEmail(res.email)
+                setCurrentUser(res)
                 navigate('/')
             })
             .catch((error) => {
                 setIsLoggedIn(false)
                 throw new Error(error)
             })
-    }, [navigate])
+    }, [navigate,currentUser])
 
     useEffect(() => {
         handleUserCheck()
@@ -223,7 +223,7 @@ function App() {
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
-            <Header isLoggedIn={isLoggedIn} handleLogOut={handleLogOut} email={userEmail}/>
+            <Header isLoggedIn={isLoggedIn} handleLogOut={handleLogOut} email={currentUser?.email}/>
 
             <Routes>
                 <Route path="/sign-in" element={<Login onSubmit={handleSignIn}/>}/>
