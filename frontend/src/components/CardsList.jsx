@@ -25,7 +25,12 @@ export function CardsList({
     )
   }
 
-  if (status === 'error' || !cards || !Array.isArray(cards)) {
+  if (!cards) {
+    return <h2>Добавьте карточку!</h2>
+
+  }
+
+  if (status === 'error' || !Array.isArray(cards)) {
     return <h2>Упс... Что-то пошло не так</h2>
   }
 

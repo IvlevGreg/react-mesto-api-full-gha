@@ -4,6 +4,7 @@ const { celebrate, Joi } = require('celebrate');
 const {
   createUser,
   login,
+  logout,
 } = require('../controllers/auth');
 const { LINK_PATTERN } = require('../utils/LINK_PATTERN');
 
@@ -32,6 +33,7 @@ const signupValidate = celebrate({
 });
 
 router.post('/signin', signinValidate, login);
+router.post('/sign-out', logout);
 router.post('/signup', signupValidate, createUser);
 
 module.exports = router;

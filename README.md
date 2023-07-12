@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.29.154
+IP 84.252.142.243
 
 Frontend https://blogogram.nomoreparties.sbs/
 

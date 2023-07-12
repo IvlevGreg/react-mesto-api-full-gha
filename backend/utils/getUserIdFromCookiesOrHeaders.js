@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const {
   AuthError,
 } = require('./Errors/AuthError');
+const { jwtToken } = require('./jwtToken');
 
 const getUserIdFromCookiesOrHeaders = (req, next) => {
   const tokenCookie = req.cookies.jwt;
@@ -16,7 +17,7 @@ const getUserIdFromCookiesOrHeaders = (req, next) => {
   const token = tokenCookie || authorization.replace('Bearer ', '');
 
   try {
-    return jwt.verify(token, 'super-strong-secret');
+    return jwt.verify(token, jwtToken);
   } catch (err) {
     next(new AuthError());
   }

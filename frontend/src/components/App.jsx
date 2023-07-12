@@ -18,7 +18,6 @@ import {authApi} from '../utils/AuthApi'
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(null)
-    const [userEmail, setUserEmail] = useState(null)
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
@@ -35,22 +34,20 @@ function App() {
     const navigate = useNavigate()
 
     const handleUserCheck = useCallback(() => {
-        const user = JSON.parse(localStorage.getItem('user'))
-
-        if (!user) return
+        if (currentUser) return
 
         authApi
-            .getUsersMe(user.token)
+            .getUsersMe()
             .then((res) => {
                 setIsLoggedIn(true)
-                setUserEmail(res.data.email)
+                setCurrentUser(res)
                 navigate('/')
             })
             .catch((error) => {
                 setIsLoggedIn(false)
                 throw new Error(error)
             })
-    }, [navigate])
+    }, [navigate,currentUser])
 
     useEffect(() => {
         handleUserCheck()
@@ -69,7 +66,7 @@ function App() {
                 api
                     .getInitialCards()
                     .then((data) => {
-                        setCards(data)
+                        setCards(data.data)
                         setCardsStatus('success')
                     })
                     .catch(() => setCardsStatus('error'))
@@ -80,8 +77,11 @@ function App() {
 
     const handleLogOut = useCallback(
         () => {
-            localStorage.removeItem('user')
-            setIsLoggedIn(null)
+            authApi.postSignOut().then(() => {
+                setIsLoggedIn(null)
+            }).catch((e) => console.error(e))
+
+
         },
         []
     )
@@ -116,7 +116,7 @@ function App() {
     const handleCardLike = useCallback((currentCard, isLiked) => {
         api
             .changeLikeCardStatus(currentCard._id, isLiked)
-            .then((newCard) => {
+            .then(({data:newCard}) => {
                 setCards((state) =>
                     state.map((card) => (card._id === currentCard._id ? newCard : card))
                 )
@@ -156,7 +156,7 @@ function App() {
         (card) => {
             api
                 .postNewCard(card)
-                .then((newCard) => {
+                .then(({data:newCard}) => {
                     setCards([newCard, ...cards])
                     closeAllPopups()
                 })
@@ -198,12 +198,6 @@ function App() {
             .postSignIn(user)
             .then((res) => {
                 setIsLoggedIn(true)
-                localStorage.setItem(
-                    'user',
-                    JSON.stringify({
-                        ...res,
-                    })
-                )
                 navigate('/')
             })
             .catch((error) => {
@@ -229,7 +223,7 @@ function App() {
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
-            <Header isLoggedIn={isLoggedIn} handleLogOut={handleLogOut} email={userEmail}/>
+            <Header isLoggedIn={isLoggedIn} handleLogOut={handleLogOut} email={currentUser?.email}/>
 
             <Routes>
                 <Route path="/sign-in" element={<Login onSubmit={handleSignIn}/>}/>
