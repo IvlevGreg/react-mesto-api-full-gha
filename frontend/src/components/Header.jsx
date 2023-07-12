@@ -3,7 +3,7 @@ import {Link, Route, Routes} from "react-router-dom";
 import {ProtectedRouteElement} from "./ProtectedRouteElement";
 
 
-export function Header({isLoggedIn, handleLogOut, email}) {
+export function Header({isLoggedIn, handleLogOut, email,userStatus}) {
     return <header className='header'>
         <a href='/' className='logo'>
             <img
@@ -20,7 +20,7 @@ export function Header({isLoggedIn, handleLogOut, email}) {
             <Route
                 path="/"
                 element={
-                    <ProtectedRouteElement loggedIn={isLoggedIn}>
+                    <ProtectedRouteElement loggedIn={isLoggedIn} userStatus={userStatus}>
                         <div className='header__user'>
                             {email && <div className='header__text header__email'>{email}</div>}
                             <Link className='header__text header__link header__text_gray' to='/sign-in'

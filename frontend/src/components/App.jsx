@@ -203,7 +203,7 @@ function App() {
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
-            <Header isLoggedIn={isLoggedIn} handleLogOut={handleLogOut} email={currentUser?.email}/>
+            <Header isLoggedIn={isLoggedIn} handleLogOut={handleLogOut} email={currentUser?.email} userStatus={userStatus}/>
 
             <Routes>
                 {userStatus === 'loading' && (
@@ -218,7 +218,7 @@ function App() {
                 <Route
                     path="/"
                     element={
-                        <ProtectedRouteElement loggedIn={isLoggedIn}>
+                        <ProtectedRouteElement loggedIn={isLoggedIn} userStatus={userStatus}>
                             {MainElement}
                         </ProtectedRouteElement>
                     }
@@ -227,7 +227,7 @@ function App() {
                 <Route
                     path="/log-out"
                     element={
-                        <ProtectedRouteElement loggedIn={isLoggedIn}>
+                        <ProtectedRouteElement loggedIn={isLoggedIn} userStatus={userStatus}>
                             <h1> log-out</h1>
                         </ProtectedRouteElement>
                     }
