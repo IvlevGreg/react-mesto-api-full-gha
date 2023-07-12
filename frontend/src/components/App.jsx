@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react'
+import {useCallback, useEffect, useLayoutEffect, useState} from 'react'
 import {CurrentUserContext} from '../contexts/CurrentUserContext'
 import {api} from '../utils/Api'
 import {Footer} from './Footer'
@@ -33,28 +33,7 @@ function App() {
 
     const navigate = useNavigate()
 
-    const handleUserCheck = useCallback(() => {
-        if (currentUser) return
-
-        authApi
-            .getUsersMe()
-            .then((res) => {
-                setIsLoggedIn(true)
-                setCurrentUser(res)
-                navigate('/')
-            })
-            .catch((error) => {
-                setIsLoggedIn(false)
-                throw new Error(error)
-            })
-    }, [navigate,currentUser])
-
     useEffect(() => {
-        handleUserCheck()
-    }, [handleUserCheck])
-
-    useEffect(() => {
-        if (!isLoggedIn) return
         setUserStatus('loading')
         setCardsStatus('loading')
         authApi
@@ -62,6 +41,7 @@ function App() {
             .then((data) => {
                 setUserStatus('success')
                 setCurrentUser(data)
+                setIsLoggedIn(true)
 
                 api
                     .getInitialCards()
@@ -72,7 +52,7 @@ function App() {
                     .catch(() => setCardsStatus('error'))
             })
             .catch(() => setUserStatus('error'))
-    }, [isLoggedIn])
+    }, [])
 
 
     const handleLogOut = useCallback(
@@ -116,7 +96,7 @@ function App() {
     const handleCardLike = useCallback((currentCard, isLiked) => {
         api
             .changeLikeCardStatus(currentCard._id, isLiked)
-            .then(({data:newCard}) => {
+            .then(({data: newCard}) => {
                 setCards((state) =>
                     state.map((card) => (card._id === currentCard._id ? newCard : card))
                 )
@@ -156,7 +136,7 @@ function App() {
         (card) => {
             api
                 .postNewCard(card)
-                .then(({data:newCard}) => {
+                .then(({data: newCard}) => {
                     setCards([newCard, ...cards])
                     closeAllPopups()
                 })
@@ -226,6 +206,13 @@ function App() {
             <Header isLoggedIn={isLoggedIn} handleLogOut={handleLogOut} email={currentUser?.email}/>
 
             <Routes>
+                {userStatus === 'loading' && (
+                    <Route
+                        path="*"
+                        element={MainElement}
+                    />
+                )
+                }
                 <Route path="/sign-in" element={<Login onSubmit={handleSignIn}/>}/>
                 <Route path="/sign-up" element={<Register onSubmit={handleSignUp}/>}/>
                 <Route
