@@ -33,7 +33,10 @@ function App() {
 
     const navigate = useNavigate()
 
+
     useEffect(() => {
+        if (isLoggedIn === false || currentUser) return
+
         setUserStatus('loading')
         setCardsStatus('loading')
         authApi
@@ -52,7 +55,9 @@ function App() {
                     .catch(() => setCardsStatus('error'))
             })
             .catch(() => setUserStatus('error'))
-    }, [])
+    }, [isLoggedIn])
+
+
 
 
     const handleLogOut = useCallback(
@@ -60,8 +65,6 @@ function App() {
             authApi.postSignOut().then(() => {
                 setIsLoggedIn(null)
             }).catch((e) => console.error(e))
-
-
         },
         []
     )
@@ -174,6 +177,7 @@ function App() {
 
     const handleSignIn = useCallback((user) => {
         setInfoTooltipError('')
+
         authApi
             .postSignIn(user)
             .then((res) => {
