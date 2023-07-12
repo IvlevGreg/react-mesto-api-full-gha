@@ -94,7 +94,7 @@ export class Api {
 }
 
 export const api = new Api({
-    baseUrl: IS_DEVELOPMENT ? 'http://localhost:4000' : 'https://blogogram.nomoreparties.sbs',
+    baseUrl: IS_DEVELOPMENT ? 'http://localhost:4000' : 'https://api.blogogram.nomoreparties.sbs',
     headers: {
         authorization: '7a43c762-4e63-438c-856b-e056a5084ee3',
         'Content-Type': 'application/json',
