@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const {
   AuthError,
 } = require('./Errors/AuthError');
-const {jwtToken} = require("./jwtToken");
+const { jwtToken } = require('./jwtToken');
 
 const getUserIdFromCookiesOrHeaders = (req, next) => {
   const tokenCookie = req.cookies.jwt;

@@ -4,7 +4,7 @@ const { celebrate, Joi } = require('celebrate');
 const {
   createUser,
   login,
-  logout
+  logout,
 } = require('../controllers/auth');
 const { LINK_PATTERN } = require('../utils/LINK_PATTERN');
 

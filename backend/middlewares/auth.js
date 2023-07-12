@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken');
 const {
   AuthError,
 } = require('../utils/Errors');
-const {jwtToken} = require("../utils/jwtToken");
+const { jwtToken } = require('../utils/jwtToken');
 
 module.exports = (req, res, next) => {
   const tokenCookie = req.cookies.jwt;
-  const {authorization} = req.headers;
+  const { authorization } = req.headers;
 
   if (!tokenCookie && !(authorization && authorization.startsWith('Bearer '))) {
     next(new AuthError());

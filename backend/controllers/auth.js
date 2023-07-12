@@ -8,7 +8,7 @@ const USER_409_ERROR_TEXT = 'Пользователь с таким email уже
 const {
   UserExist, AuthError,
 } = require('../utils/Errors');
-const {jwtToken} = require("../utils/jwtToken");
+const { jwtToken } = require('../utils/jwtToken');
 
 const rejectPromiseWrongEmailOrPassword = () => Promise.reject(
   new AuthError('Неверное сочетание почты и пароля'),
@@ -26,7 +26,7 @@ const login = (req, res, next) => {
         .cookie('jwt', token, {
           maxAge: 3600000,
           httpOnly: true,
-          sameSite:true
+          sameSite: true,
         });
 
       res.send({ message: 'Всё верно!' });
@@ -34,7 +34,7 @@ const login = (req, res, next) => {
     .catch(next);
 };
 
-const logout = (req,res) => {
+const logout = (req, res) => {
   res
     .cookie('jwt', '', {
       maxAge: -1,
@@ -42,7 +42,7 @@ const logout = (req,res) => {
     });
 
   res.send({ message: 'Вы успешно вышли из профиля' });
-}
+};
 
 const createUser = (req, res, next) => {
   const {
