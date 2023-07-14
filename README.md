@@ -5,7 +5,7 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/...
+Адрес репозитория:  https://github.com/IvlevGreg/react-mesto-api-full-gha
 
 ## Ссылки на проект
 
@@ -15,4 +15,3 @@ Frontend https://blogogram.nomoreparties.sbs/
 
 Backend https://api.blogogram.nomoreparties.sbs/
 
-git https://github.com/IvlevGreg/react-mesto-api-full-gha
