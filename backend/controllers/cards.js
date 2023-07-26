@@ -47,15 +47,15 @@ const deleteCardById = (req, res, next) => {
 
       cards.deleteOne({ _id: cardId })
         .then(() => res.send({ data: cardsData }))
-        .catch((err) => {
-          if (err === 'CastError') {
-            next(new Default400Error('Ошибка удаления карточки'));
-            return;
-          }
-          next(err);
-        });
+        .catch(next);
     })
-    .catch(next);
+    .catch((err) => {
+      if (err === 'CastError') {
+        next(new Default400Error('Ошибка удаления карточки'));
+        return;
+      }
+      next(err);
+    });
 };
 
 const deleteLikeByCardId = (req, res, next) => {
